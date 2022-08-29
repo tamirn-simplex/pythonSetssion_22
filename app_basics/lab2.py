@@ -1,6 +1,32 @@
 from commands.constants import msg_dic
 import commands.constants as con
 
+
+def get_user_input() -> tuple:
+    is_ok = False
+    msg = "initial_msg"
+    start_num = 0
+    end_num = 0
+
+    while not is_ok:
+        # Getting user input
+        while not (start_num := input(msg_dic[msg].format("start"))).isnumeric():
+            msg = "rep_msg"
+        else:
+            start_num = int(start_num)
+
+        msg = "initial_msg"
+        while not (end_num := input(msg_dic[msg].format("end"))).isnumeric():
+            msg = "rep_msg"
+        else:
+            end_num = int(end_num)
+        print("start num - {} and end num is {}".format(start_num, end_num))
+        if end_num <= start_num:
+            print("End number must be greater than start number (you silly :-)\nDo it again")
+            continue
+        is_ok = True
+    return start_num, end_num
+
 """
 1.
 As a user, I want to input a start number and an end number.
@@ -13,27 +39,8 @@ Otherwise, print the number
 
 
 def fizz_buzz():
-    is_ok = False
-    msg = "initial_msg"
-
-    while not is_ok:
-        # Getting user input
-        while not (start_num := input(msg_dic[msg].format("start"))).isnumeric():
-            msg = "rep_msg"
-
-        msg = "initial_msg"
-        while not (end_num := input(msg_dic[msg].format("end"))).isnumeric():
-            msg = "rep_msg"
-
-        start_num = int(start_num)
-        end_num = int(end_num)
-        print("start num - {} and end num is {}".format(start_num, end_num))
-        if end_num <= start_num:
-            print("End number must be greater than start number (you silly :-)\nDo it again")
-            continue
-        is_ok = True
-
-    for x in range(start_num, end_num):
+    start, end = get_user_input()
+    for x in range(start, end):
         # print(x)
         if (x % 3) == 0 and (x % 5) == 0:
             print("FizzBuzz")
@@ -77,8 +84,8 @@ def my_fibo(n_element: int, first: int, second: int):
 
 
 # print("Get from constant {} for test".format(con.msg_dic["initial_msg"]))
-my_fibo(8, 1, 2)
-# fizz_buzz()
+# my_fibo(8, 1, 2)
+fizz_buzz()
 """
 3. (thinking exercise)
 After completing the above, think. What did you learn from the implementations? (could be nothing)
