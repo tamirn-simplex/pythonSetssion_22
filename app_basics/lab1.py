@@ -93,7 +93,10 @@ if __name__ == '__main__':
                 util.history(history_commands)
             else:
                 gf = getattr(util, action)
-                gf()
+                try:
+                    gf()
+                except NotImplementedError as e:
+                    print(e.__str__())
 
         print(f'iteration number {counter} -- last command {history_commands[-1]}')
 

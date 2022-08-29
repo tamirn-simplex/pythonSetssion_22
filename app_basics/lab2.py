@@ -59,6 +59,13 @@ fibo(50, 13, 21) # means, give me the 50th member of the fibo seq, starting from
 
 
 def my_fibo(n_element: int, first: int, second: int):
+    """
+    Getting the fibo number in the {n_element} position
+    {first} - The fibo first element
+    {second} - The fibo second element
+
+    Return a tuple with the fibo element in {n_element} position and the sum of all fibo (up tp {n_element} position.
+    """
     a, b = first, second
     count, fib_sum = 0, 0
     while count < n_element:
@@ -69,9 +76,9 @@ def my_fibo(n_element: int, first: int, second: int):
     print(last, fib_sum)
 
 
-print("Get from constant {} for test".format(con.msg_dic["initial_msg"]))
-# my_fibo(8, 13, 21)
-fizz_buzz()
+# print("Get from constant {} for test".format(con.msg_dic["initial_msg"]))
+my_fibo(8, 1, 2)
+# fizz_buzz()
 """
 3. (thinking exercise)
 After completing the above, think. What did you learn from the implementations? (could be nothing)
