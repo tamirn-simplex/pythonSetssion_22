@@ -3,12 +3,17 @@ import commands.constants as con
 
 
 def get_user_input() -> tuple:
-    is_ok = False
+    """
+    Getting from user two number for range.
+    Returns:tuple of start and end numbers
+
+    """
+    is_running = True
     msg = "initial_msg"
     start_num = 0
     end_num = 0
 
-    while not is_ok:
+    while is_running:
         # Getting user input
         while not (start_num := input(msg_dic[msg].format("start"))).isnumeric():
             msg = "rep_msg"
@@ -24,7 +29,7 @@ def get_user_input() -> tuple:
         if end_num <= start_num:
             print("End number must be greater than start number (you silly :-)\nDo it again")
             continue
-        is_ok = True
+        is_running = False
     return start_num, end_num
 
 """

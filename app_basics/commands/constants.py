@@ -1,4 +1,4 @@
-constants: dict = {
+valid_cmds_dic: dict = {
     'EXIT_CMDS': ('//quit', '//exit'),
     'FILE_CMDS': ('head', 'tail'),
     'GENERAL': ('print', 'history', 'help_me'),

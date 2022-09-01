@@ -35,11 +35,11 @@ import os
 from datetime import datetime
 import commands.validators as valid
 import commands.util as util
-from commands.constants import constants
+from commands.constants import valid_cmds_dic
 
 if __name__ == '__main__':
     counter: int = 0
-    key = constants.keys()
+    key = list(valid_cmds_dic.keys())
     history_commands = []
     start_time = datetime.now()
 
@@ -56,14 +56,14 @@ if __name__ == '__main__':
 
         # cmd is a tuple, first item is the command.
         # EXIT_CMDS
-        if cmd[0] == list(key)[0]:
+        if cmd[0] == key[0]:
             break
 
         history_commands.append(parts[0])
         # FILE_CMDS
-        if cmd[0] == list(key)[1]:
+        if cmd[0] == key[1]:
             action, input_file, *rest = parts
-            mode = 1 if action == constants[cmd[0]][0] else -1
+            mode = 1 if action == valid_cmds_dic[cmd[0]][0] else -1
             try:
                 num_of = int(rest[0]) if len(rest) > 0 else 3
             except ValueError:
@@ -87,9 +87,9 @@ if __name__ == '__main__':
                     util.csv_tail_or_head(input_file, mode, num_of)
             continue
         # general
-        if cmd[0] == list(key)[2]:
+        if cmd[0] == key[2]:
             action, *rest = parts
-            if action == constants[cmd[0]][1]:
+            if action == valid_cmds_dic[cmd[0]][1]:
                 util.history(history_commands)
             else:
                 gf = getattr(util, action)
